@@ -140,6 +140,7 @@ use OC\Security\Crypto;
 use OC\Security\CSP\ContentSecurityPolicyManager;
 use OC\Security\CSP\ContentSecurityPolicyNonceManager;
 use OC\Security\CSRF\CsrfTokenManager;
+use OC\Security\CSRF\CsrfValidator;
 use OC\Security\CSRF\TokenStorage\SessionStorage;
 use OC\Security\Hasher;
 use OC\Security\SecureRandom;
@@ -232,6 +233,7 @@ use OCP\Remote\IInstanceFactory;
 use OCP\RichObjectStrings\IValidator;
 use OCP\Route\IRouter;
 use OCP\Security\Bruteforce\IThrottler;
+use OCP\Security\CSRF\ICsrfValidator;
 use OCP\Security\IContentSecurityPolicyManager;
 use OCP\Security\ICredentialsManager;
 use OCP\Security\ICrypto;
@@ -1411,6 +1413,8 @@ class Server extends ServerContainer implements IServerContainer {
 		$this->registerAlias(IEventSourceFactory::class, EventSourceFactory::class);
 
 		$this->registerAlias(\OCP\TextProcessing\IManager::class, \OC\TextProcessing\Manager::class);
+
+		$this->registerAlias(ICsrfValidator::class, CsrfValidator::class);
 
 		$this->connectDispatcher();
 	}
