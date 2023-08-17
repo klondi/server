@@ -51,8 +51,8 @@ class BeforeTemplateRenderedListener implements IEventListener {
 
 		if ($event instanceof BeforeLoginTemplateRenderedEvent) {
 			// todo: make login work without these
-			Util::addScript('core', 'common');
-			Util::addScript('core', 'main');
+			//Util::addScript('core', 'common');
+			//Util::addScript('core', 'main');
 		}
 
 		if ($event instanceof BeforeTemplateRenderedEvent) {
