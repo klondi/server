@@ -100,3 +100,8 @@ export interface RenamingStore {
 	renamingNode?: Node
 	newName: string
 }
+
+// Drag and drop store
+export interface DragAndDropStore {
+	dragging: FileId[]
+}
