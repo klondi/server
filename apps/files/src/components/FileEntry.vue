@@ -28,7 +28,7 @@
 		:draggable="canDrag"
 		class="list__row"
 		@contextmenu="onRightClick"
-		@dragenter="onDragEnter"
+		@dragover="onDragOver"
 		@dragleave="onDragLeave"
 		@dragstart="onDragStart"
 		@dragend="onDragEnd"
@@ -206,6 +206,7 @@ import { useKeyboardStore } from '../store/keyboard.ts'
 import { useRenamingStore } from '../store/renaming.ts'
 import { useSelectionStore } from '../store/selection.ts'
 import { useUserConfigStore } from '../store/userconfig.ts'
+import { handleCopyMoveNodeTo, MoveCopyAction } from '../actions/moveOrCopyAction.ts'
 import CustomElementRender from './CustomElementRender.vue'
 import CustomSvgIconRender from './CustomSvgIconRender.vue'
 import FavoriteIcon from './FavoriteIcon.vue'
@@ -878,7 +879,7 @@ export default Vue.extend({
 			return document.querySelector('.app-content > .files-list')
 		},
 
-		onDragEnter() {
+		onDragOver() {
 			this.dragover = this.canDrop
 		},
 		onDragLeave() {
@@ -916,6 +917,17 @@ export default Vue.extend({
 			}
 
 			logger.debug('Dropped', { event, selection: this.draggingFiles })
+			this.draggingFiles.forEach(async fileId => {
+				const node = this.filesStore.getNode(fileId)
+				Vue.set(node, '_loading', true)
+				try {
+					await handleCopyMoveNodeTo(node, this.source, MoveCopyAction.COPY)
+				} catch (error) {
+					logger.error('Error while moving file', { error })
+					showError(this.t('files', 'Could not move {file}', { file: node.basename }))
+				}
+				Vue.set(node, '_loading', false)
+			})
 		},
 
 		t: translate,
