@@ -5,6 +5,7 @@ import './actions/deleteAction'
 import './actions/downloadAction'
 import './actions/editLocallyAction'
 import './actions/favoriteAction'
+import './actions/moveOrCopyAction'
 import './actions/openFolderAction'
 import './actions/openInFilesAction.js'
 import './actions/renameAction'
@@ -14,6 +15,7 @@ import './actions/viewInFolderAction'
 import Vue from 'vue'
 import { createPinia, PiniaVuePlugin } from 'pinia'
 import { getNavigation } from '@nextcloud/files'
+import { getRequestToken } from '@nextcloud/auth'
 
 import FilesListView from './views/FilesList.vue'
 import NavigationView from './views/Navigation.vue'
@@ -33,6 +35,9 @@ declare global {
 		OCP: any;
 	}
 }
+
+// @ts-expect-error __webpack_nonce__ is injected by webpack
+__webpack_nonce__ = btoa(getRequestToken())
 
 // Init private and public Files namespace
 window.OCA.Files = window.OCA.Files ?? {}
