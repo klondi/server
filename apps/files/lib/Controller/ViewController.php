@@ -218,6 +218,7 @@ class ViewController extends Controller {
 
 		// Load the files we need
 		\OCP\Util::addStyle('files', 'merged');
+		\OCP\Util::addScript('files', 'fileactions');
 		\OCP\Util::addScript('files', 'main');
 
 		$userId = $this->userSession->getUser()->getUID();

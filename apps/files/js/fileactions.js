@@ -10,6 +10,14 @@
 
 (function() {
 
+	if (!OCA.Files) {
+		/**
+		 * Namespace for the files app
+		 * @namespace OCA.Files
+		 */
+		OCA.Files = {};
+	}
+
 	/**
 	 * Construct a new FileActions instance
 	 * @constructs FileActions
