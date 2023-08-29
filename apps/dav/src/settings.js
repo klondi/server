@@ -20,7 +20,6 @@ const CalDavSettingsView = new View({
 				'dav',
 				'sendEventRemindersToSharedUsers'
 			),
-			sendEventRemindersPush: loadState('dav', 'sendEventRemindersPush'),
 		}
 	},
 })

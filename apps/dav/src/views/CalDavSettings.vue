@@ -60,14 +60,6 @@
 				{{ $t('dav', 'Reminders are always sent to organizers and attendees.' ) }}
 			</em>
 		</p>
-		<p class="indented">
-			<NcCheckboxRadioSwitch id="caldavSendEventRemindersPush"
-				:checked.sync="sendEventRemindersPush"
-				type="switch"
-				:disabled="!sendEventReminders">
-				{{ $t('dav', 'Enable notifications for events via push') }}
-			</NcCheckboxRadioSwitch>
-		</p>
 	</NcSettingsSection>
 </template>
 
@@ -136,9 +128,6 @@ export default {
 				'sendEventRemindersToSharedUsers',
 				value ? 'yes' : 'no'
 			)
-		},
-		sendEventRemindersPush(value) {
-			OCP.AppConfig.setValue('dav', 'sendEventRemindersPush', value ? 'yes' : 'no')
 		},
 	},
 }

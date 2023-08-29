@@ -47,7 +47,6 @@ class CalDAVSettings implements IDelegatedSettings {
 		'generateBirthdayCalendar' => 'yes',
 		'sendEventReminders' => 'yes',
 		'sendEventRemindersToSharedUsers' => 'yes',
-		'sendEventRemindersPush' => 'no',
 	];
 
 	/**

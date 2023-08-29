@@ -62,7 +62,6 @@ class CalDAVSettingsTest extends TestCase {
 			   ['dav', 'generateBirthdayCalendar', 'yes'],
 			   ['dav', 'sendEventReminders', 'yes'],
 			   ['dav', 'sendEventRemindersToSharedUsers', 'yes'],
-			   ['dav', 'sendEventRemindersPush', 'no'],
 		   )
 		   ->will($this->onConsecutiveCalls('yes', 'no', 'yes', 'yes', 'yes'));
 		$this->urlGenerator
@@ -77,7 +76,6 @@ class CalDAVSettingsTest extends TestCase {
 				['generateBirthdayCalendar', false],
 				['sendEventReminders', true],
 				['sendEventRemindersToSharedUsers', true],
-				['sendEventRemindersPush', true],
 			);
 		$result = $this->settings->getForm();
 

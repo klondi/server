@@ -44,7 +44,6 @@ describe('CalDavSettings', () => {
 						generateBirthdayCalendar: true,
 						sendEventReminders: true,
 						sendEventRemindersToSharedUsers: true,
-						sendEventRemindersPush: true,
 					}
 				},
 			},
@@ -69,10 +68,6 @@ describe('CalDavSettings', () => {
 			'Send reminder notifications to calendar sharees as well'
 		)
 		expect(sendEventRemindersToSharedUsers).toBeChecked()
-		const sendEventRemindersPush = TLUtils.getByLabelText(
-			'Enable notifications for events via push'
-		)
-		expect(sendEventRemindersPush).toBeChecked()
 
 		/*
 		FIXME userEvent.click is broken with nextcloud-vue/Button
@@ -115,7 +110,6 @@ describe('CalDavSettings', () => {
 		)
 
 		expect(sendEventRemindersToSharedUsers).toBeDisabled()
-		expect(sendEventRemindersPush).toBeDisabled()
 
 		OCP.AppConfig.setValue.mockClear()
 		await userEvent.click(sendEventReminders)
@@ -127,7 +121,6 @@ describe('CalDavSettings', () => {
 		)
 
 		expect(sendEventRemindersToSharedUsers).toBeEnabled()
-		expect(sendEventRemindersPush).toBeEnabled()
 		*/
 	})
 })
